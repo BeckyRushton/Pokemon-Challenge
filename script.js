@@ -3,21 +3,21 @@ import pokemonArray from "./data/pokemon.js";
 const pokemonCard = document.querySelector(".card-container");
 const searchBar = document.getElementById("search-bar");
 
-const makeCard = (pokemonArr) => {
+const makeCard = (pokemon) => {
   const cardHTML = `
   <div class="card">
     <div class="card__content">
-      <img  class="card__image" src="${pokemonArr.sprite}" alt="image of ${
-    pokemonArr.name
+      <img  class="card__image" src="${pokemon.sprite}" alt="image of ${
+    pokemon.name
   }"></img>
       <div class="card__heading">${
-        pokemonArr.name.charAt(0).toUpperCase() + pokemonArr.name.slice(1)
+        pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
       }
       </div>
       <div class="card__text">${
-        pokemonArr.name.charAt(0).toUpperCase() + pokemonArr.name.slice(1)
-      } (#${pokemonArr.id}) is a ${pokemonArr.types[0]} and ${
-    pokemonArr.types[1]
+        pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+      } (#${pokemon.id}) is a ${pokemon.types[0]} and ${
+    pokemon.types[1]
   } type pokemon. 
       </div>
     </div>
@@ -36,14 +36,17 @@ const handleSearch = (event) => {
     } else {
       return false;
     }
-    populatePage(filteredPokemonArr);
   });
 };
-const populatePage = (pokemonArr) => {
-  pokemonCard.innerHTML = pokemonArr
-    .map((pokemon) => makeCard(pokemon))
-    .join("");
-};
-populatePage(pokemonCard);
+//   populatePage(filteredPokemonArr);
+// };
+// const populatePage = (pokemonArr) => {
+//   console.log(pokemonArr);
+//   pokemonCard.innerHTML = pokemonArr
+//     .map((pokemon) => makeCard(pokemon))
+//     .join("");
+// };
+
+// populatePage(pokemonCard);
 
 searchBar.addEventListener("input", handleSearch);
