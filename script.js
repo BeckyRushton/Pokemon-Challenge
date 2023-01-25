@@ -28,12 +28,10 @@ for (let i = 0; i < pokemonArray.length; i++) {
   pokemonCard.innerHTML += makeCard(pokemonArray[i]);
 }
 
-const populatePage = () => {
-  pokemonCard.innerHTML = pokemonArray
-    .map((pokemon) => makeCard(pokemon))
-    .join("");
+const populatePage = (array) => {
+  pokemonCard.innerHTML = array.map((pokemon) => makeCard(pokemon)).join("");
 };
-populatePage();
+populatePage(pokemonArray);
 
 const handleSearch = (event) => {
   const searchTerm = event.target.value.toLowerCase();
