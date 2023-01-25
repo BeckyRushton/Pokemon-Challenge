@@ -2,6 +2,15 @@ import pokemonArray from "./data/pokemon.js";
 
 const pokemonCard = document.querySelector(".card-container");
 const searchBar = document.getElementById("search-bar");
+const checkbox = document.querySelector(".types");
+
+const aboutPokemon = (types) => {
+  if (types.length == 1) {
+    return types[0];
+  } else {
+    return `${types[0]} and ${types[1]}`;
+  }
+};
 
 const makeCard = (pokemon) => {
   const cardHTML = `
@@ -16,9 +25,7 @@ const makeCard = (pokemon) => {
       </div>
       <div class="card__text">${
         pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
-      } (#${pokemon.id}) is a ${pokemon.types[0]} and ${
-    pokemon.types[1]
-  } type pokemon. 
+      } (#${pokemon.id}) is a ${aboutPokemon(pokemon.types)} type pokemon. 
       </div>
     </div>
   </div>`;
@@ -46,4 +53,18 @@ const handleSearch = (event) => {
   console.log(filteredPokemonArr);
 };
 
+const handleCheck = (event) => {
+  const type = event.target.value;
+  const filteredPokemonTypes = pokemonArray.filter((pokemon) => {
+    if (pokemon.types.includes(type)) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  populatePage(filteredPokemonTypes);
+  console.log(filteredPokemonTypes);
+};
+
 searchBar.addEventListener("input", handleSearch);
+checkbox.addEventListener("change", handleCheck);

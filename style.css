@@ -38,6 +38,7 @@ body {
   max-width: 200px;
   border-radius: 3px;
   overflow: hidden;
+  box-shadow: 2px 2px 5px;
 }
 .card-container > .card > .card__image {
   transform: scale(1.25);
