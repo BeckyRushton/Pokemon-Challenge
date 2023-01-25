@@ -28,6 +28,13 @@ for (let i = 0; i < pokemonArray.length; i++) {
   pokemonCard.innerHTML += makeCard(pokemonArray[i]);
 }
 
+const populatePage = () => {
+  pokemonCard.innerHTML = pokemonArray
+    .map((pokemon) => makeCard(pokemon))
+    .join("");
+};
+populatePage();
+
 const handleSearch = (event) => {
   const searchTerm = event.target.value.toLowerCase();
   const filteredPokemonArr = pokemonArray.filter((pokemon) => {
@@ -37,16 +44,8 @@ const handleSearch = (event) => {
       return false;
     }
   });
+  populatePage(filteredPokemonArr);
+  console.log(filteredPokemonArr);
 };
-//   populatePage(filteredPokemonArr);
-// };
-// const populatePage = (pokemonArr) => {
-//   console.log(pokemonArr);
-//   pokemonCard.innerHTML = pokemonArr
-//     .map((pokemon) => makeCard(pokemon))
-//     .join("");
-// };
-
-// populatePage(pokemonCard);
 
 searchBar.addEventListener("input", handleSearch);
