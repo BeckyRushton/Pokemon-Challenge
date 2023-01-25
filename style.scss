@@ -10,12 +10,15 @@ body {
   background-color: $color-background;
   padding: 1rem;
 }
-.types {
+.pokeTypes {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: baseline;
   gap: 10px;
+  font-size: 1.2rem;
+
+  #types {
+    font-size: 1.2rem;
+  }
 }
 #search-bar {
   margin: 10px;

@@ -2,7 +2,53 @@ import pokemonArray from "./data/pokemon.js";
 
 const pokemonCard = document.querySelector(".card-container");
 const searchBar = document.getElementById("search-bar");
-const checkbox = document.querySelector(".types");
+const searchType = document.querySelector("#types");
+
+const populateSearchType = () => {
+  const typesArr = [
+    "grass",
+    "fire",
+    "poison",
+    "normal",
+    "water",
+    "flying",
+    "fighting",
+    "electric",
+    "rock",
+    "psychic",
+    "fairy",
+    "dragon",
+    "bug",
+    "ground",
+    "steel",
+    "ice",
+    "ghost",
+  ];
+
+  searchType.innerHTML += `<option value="">Select</option>`;
+  searchType.innerHTML += typesArr
+    .map(
+      (types) =>
+        `<option value="${types}">${
+          types.charAt(0).toUpperCase() + types.substring(1)
+        }</option>`
+    )
+    .join("");
+};
+populateSearchType();
+
+const handleType = (event) => {
+  const selectedType = event.target.value;
+
+  if (selectedType == "") {
+    populatePage(pokemonArray);
+  } else {
+    const filterArr = pokemonArray.filter((pokemon) => {
+      return pokemon.types.includes(selectedType);
+    });
+    populatePage(filterArr);
+  }
+};
 
 const aboutPokemon = (types) => {
   if (types.length == 1) {
@@ -50,21 +96,7 @@ const handleSearch = (event) => {
     }
   });
   populatePage(filteredPokemonArr);
-  console.log(filteredPokemonArr);
-};
-
-const handleCheck = (event) => {
-  const type = event.target.value;
-  const filteredPokemonTypes = pokemonArray.filter((pokemon) => {
-    if (pokemon.types.includes(type)) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-  populatePage(filteredPokemonTypes);
-  console.log(filteredPokemonTypes);
 };
 
 searchBar.addEventListener("input", handleSearch);
-checkbox.addEventListener("change", handleCheck);
+searchType.addEventListener("change", handleType);
